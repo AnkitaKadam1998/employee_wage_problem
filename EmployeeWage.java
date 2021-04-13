@@ -2,19 +2,23 @@ import java.util.Random;
 
 class EmployeeWage
 {
-public static void main(String args [])
+public static void main(String args[])
 {
 Random r = new Random();
 int empCheck = r.nextInt(2);
-int is_full_time=1;
-if (empCheck == is_full_time)
+int emp_rate_per_hr=20;
+int emphrs = 8;
+int salary = 0;
+
+if(empCheck == emp_rate_per_hr)
 {
-        System.out.println(" Employee is present");
+        System.out.println("emphrs * emp_rate_per_hr");
 }
 else
 {
-        System.out.println(" Employee is absent");
+        System.out.println("salary = 0");
 }
 }
 }
+
 
