@@ -1,28 +1,42 @@
-import java.util.Random;
-class EmployeeWage
+public class EmployeeWage
 {
+public static final int IS_PART_TIME = 1;
+public static final int IS_FULL_TIME = 2;
+public static final int EMP_RATE_PER_HOUR = 20;
+public static final int NUM_OF_WORKING_DAYS = 2;
+public static final int MAX_HRS_IN_MONTH = 10;
+
+public static int ComputeEmpWage()
+{
+int empHrs = 0,totalEmpHrs = 0,totalWorkingDays = 0;
+while (totalEmpHrs <= MAX_HRS_IN_MONTH && 
+		totalWorkingDays < NUM_OF_WORKING_DAYS)
+{
+	totalWorkingDays++;
+	int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+	switch (empCheck)
+	{
+		case IS_PART_TIME:
+			empHrs = 4;
+			break;
+		case IS_FULL_TIME:
+			empHrs = 8;
+			break;
+		default:
+			empHrs = 0;
+	}
+	totalEmpHrs += empHrs;
+	System.out.println("Day: "+totalWorkingDays + "Emp Hr: "+empHrs);
+}
+int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+System.out.println("Total emp wage: " + totalEmpWage);
+return totalEmpWage;
+}
 public static void main(String args[])
 {
-Random r=new Random();
-int empCheck=r.nextInt(3);
-int present_full_time=1;
-int present_part_time=2;
-int emp_rate_per_hr=20;
-int emphrs=8;
-
-switch(empCheck)
-{
-        case 1:System.out.println("present_full_time");
-        break;
-        case 2:System.out.println("present_part_time");
-        break;
-        default:System.out.println("not prsent");
-        break;
+ComputeEmpWage();
 }
 }
-}
-
-
 
 
 
