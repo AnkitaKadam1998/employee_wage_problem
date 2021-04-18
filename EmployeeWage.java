@@ -1,41 +1,53 @@
-public class EmployeeWage
-{
-public static final int IS_PART_TIME = 1;
-public static final int IS_FULL_TIME = 2;
-public static final int EMP_RATE_PER_HOUR = 20;
-public static final int NUM_OF_WORKING_DAYS = 2;
-public static final int MAX_HRS_IN_MONTH = 10;
+import java.util.*;
 
-public static int ComputeEmpWage()
-{
-int empHrs = 0,totalEmpHrs = 0,totalWorkingDays = 0;
-while (totalEmpHrs <= MAX_HRS_IN_MONTH && 
-		totalWorkingDays < NUM_OF_WORKING_DAYS)
-{
-	totalWorkingDays++;
-	int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-	switch (empCheck)
-	{
-		case IS_PART_TIME:
-			empHrs = 4;
-			break;
-		case IS_FULL_TIME:
-			empHrs = 8;
-			break;
-		default:
-			empHrs = 0;
+public class EmployeeWage {
+
+      //public static final int wagePerHour = 20;
+      public static final int partTimeHour = 4;
+      public static final int fullDayHour = 8;
+      //public static final int totalWorkingDays = 20;
+
+      public static int computeWage(String company, int wagePerHour, int totalWorkingDays, int maxWorkingHours ) {
+      
+			//int wagePerDay = 0;
+      	//int wagePartTime = 0;
+      	int workingHours = 0;
+      	int workingDays = 0;
+
+      	while ((workingDays < totalWorkingDays) && (workingHours < maxWorkingHours)){
+         	Random n = new Random();
+         	int ran = n.nextInt(3);
+         	workingDays++;
+
+         	switch(ran){
+            	case 2:
+               	//wagePerDay = wagePerHour * fullDayHour;
+               	workingHours += fullDayHour;
+               	//System.out.println("Employee is Present and wage per day is " + wagePerDay);
+               	break;
+            	case 1:
+               	//wagePartTime = wagePerHour * partTimeHour;
+               	workingHours += partTimeHour;
+               	//System.out.println("Employee is Present for part time and wage is " + wagePartTime);
+               	break;
+            	case 0:
+               	//System.out.println("Employee is Absent");
+               	break;
+            	default:
+               	//System.out.println("Invalid");
+         	}
+			//System.out.println("This is: " + workingHours);
+      }
+      int totalEmpWage = workingHours * wagePerHour;
+		//System.out.println(workingHours);
+		System.out.println("Total employee wage for "+ company + " : " + totalEmpWage);
+		return totalEmpWage;
 	}
-	totalEmpHrs += empHrs;
-	System.out.println("Day: "+totalWorkingDays + "Emp Hr: "+empHrs);
-}
-int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
-System.out.println("Total emp wage: " + totalEmpWage);
-return totalEmpWage;
-}
-public static void main(String args[])
-{
-ComputeEmpWage();
-}
+	public static void main(String[] args) {
+		System.out.println("This is employee wage computation");	
+		computeWage("Wellsfargo", 20, 18, 80);
+		computeWage("Reliance", 10, 20, 100);
+	}
 }
 
 
